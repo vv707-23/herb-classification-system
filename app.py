@@ -23,7 +23,7 @@ model.build((None,224,224,3))
 model.load_weights("model.weights.h5")
 
 
-# Class names (correct order)
+
 class_names = ['Aloevera', 'Arali', 'Beans', 'Citron lime (herelikai)', 'Curry',
                'Eucalyptus', 'Honge', 'Kambajala', 'Malabar_Nut', 'Neem',
                'Nooni', 'Pea', 'Pepper', 'Sapota', 'Taro']
@@ -36,7 +36,7 @@ if uploaded_file is not None:
     image = Image.open(uploaded_file)
     st.image(image, caption="Uploaded Image", use_container_width=True)
 
-    # Preprocessing
+ 
     img = image.resize((224, 224))
     img = np.array(img)
 
@@ -46,10 +46,10 @@ if uploaded_file is not None:
     img_array = img / 255.0
     img_array = np.expand_dims(img_array, axis=0)
 
-    # Prediction
+
     prediction = model.predict(img_array)[0]
 
-    # Normalize (quick fix)
+  
     prediction = prediction / prediction.sum()
 
     predicted_index = np.argmax(prediction)
